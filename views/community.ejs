@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Engagement</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+<body class="bg-gray-100">
+ <!-- Navbar -->
+ <nav class="bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <div class="flex items-center">
+                <div class="shrink-0">
+                    <img class="h-12 w-auto" src="/images/logo.jpg" alt="DressUp">
+                </div>
+                <div class="ml-10 space-x-8 hidden sm:flex">
+                    <a href="/" class="nav-link text-white hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium font-bold">Home</a>
+                    <a href="/wardrobe" class="nav-link text-gray-200 hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium font-bold">Your Collections</a>
+                    <a href="/community" class="nav-link text-gray-200 hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium font-bold">Community Engage</a>
+                    <a href="/donate" class="nav-link text-gray-200 hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium font-bold">Donate</a>
+                    <div class="relative">
+                        <button id="dropdown-button" class="nav-link text-gray-200 hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium font-bold">Eco-Friendly</button>
+                        <div id="dropdown-menu" class="absolute hidden bg-white shadow-md rounded-md mt-1 z-10">
+                            <a href="/ecofriendly" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Tips</a>
+                            <a href="/reuse" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Reuse</a>
+                            <a href="/recycle" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Recycle</a>
+                        </div>
+                    </div>
+                    <a href="/contact" class="nav-link text-gray-200 hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium font-bold">Contacts</a>
+                </div>
+            </div>
+            <div class="hidden sm:flex sm:items-center">
+                <% if (user) { %> 
+                    <span class="text-gray-200 px-3 py-2 rounded-md text-sm font-medium font-bold">Hello, <%= user.username %></span>
+                    <a href="/logout" class="bg-white text-blue-600 hover:bg-blue-500 hover:text-white border border-white px-4 py-2 rounded-md text-sm font-medium ml-4 transition font-bold">Logout</a>
+                <% } else { %>
+                    <a href="/login" class="bg-white text-blue-600 hover:bg-blue-500 hover:text-white border border-white px-4 py-2 rounded-md text-sm font-medium font-bold">Login</a>
+                    <a href="/signup" class="ml-4 bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium font-bold">Sign Up</a>
+                <% } %>
+            </div>
+
+            <div class="sm:hidden">
+                <button id="mobile-menu-button" type="button" class="text-gray-300 hover:text-white focus:outline-none">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden sm:hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="/" class="block text-white hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium font-bold">Home</a>
+            <a href="/wardrobe" class="block text-gray-200 hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium font-bold">Your Collections</a>
+            <a href="/community" class="block text-gray-200 hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium font-bold">CommunityEngage</a>
+            <a href="/donate" class="block text-gray-200 hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium font-bold">Donate</a>
+            <div class="relative">
+                <button id="dropdown-button" class="nav-link text-gray-200 hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium font-bold">Eco-Friendly</button>
+                <div id="dropdown-menu" class="absolute hidden bg-white shadow-md rounded-md mt-1 z-10">
+                    <a href="/ecofriendly" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Tips</a>
+                    <a href="/reuse" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Reuse</a>
+                    <a href="/recycle" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Recycle</a>
+                </div>
+            </div>
+            <a href="/contact" class="block text-gray-200 hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium font-bold">Contacts</a>
+            <% if (user) { %> 
+                <a href="/logout" class="block bg-white text-blue-600 hover:bg-blue-500 hover:text-white px-3 py-2 rounded-md text-base font-medium font-bold">Logout</a>
+            <% } else { %>
+                <a href="/login" class="block text-gray-200 hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium font-bold">Login</a>
+                <a href="/signup" class="block bg-white text-blue-600 hover:bg-blue-500 hover:text-white px-3 py-2 rounded-md text-base font-medium font-bold">Sign Up</a>
+            <% } %>
+        </div>
+    </div>
+</nav>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h1 class="text-3xl font-bold mb-6">Community Engagement</h1>
+
+        <!-- Post Form -->
+        <% if (user) { %>
+        <form action="/community/post" method="POST" class="mb-8">
+            <textarea name="text" rows="3" placeholder="Share something with the community..." class="w-full border border-gray-300 p-2 rounded-md" required></textarea>
+            <button type="submit" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded-md">Post</button>
+        </form>
+        <% } else { %>
+        <p class="mb-4">Please <a href="/login" class="text-blue-600">log in</a> to post.</p>
+        <% } %>
+
+        <!-- Posts Section -->
+        <div>
+            <% posts.forEach(post => { %>
+            <div class="bg-white p-4 mb-4 rounded-md shadow-md">
+                <div class="flex justify-between items-center">
+                    <span class="font-semibold"><%= post.username %></span>
+                    <span class="text-gray-500 text-sm"><%= new Date(post.createdAt).toLocaleString() %></span>
+                </div>
+                <p class="mt-2"><%= post.text %></p>
+
+                <!-- Replies -->
+                <div class="mt-4">
+                    <h3 class="font-semibold">Replies:</h3>
+                    <% post.replies.forEach(reply => { %>
+                    <div class="ml-4 mt-2">
+                        <span class="font-semibold"><%= reply.username %></span>: <%= reply.text %>
+                    </div>
+                    <% }); %>
+                </div>
+
+                <% if (user) { %>
+                <!-- Reply Form -->
+                <form action="/community/reply/<%= post._id %>" method="POST" class="mt-4">
+                    <input type="text" name="text" placeholder="Reply..." class="w-full border border-gray-300 p-2 rounded-md" required>
+                    <button type="submit" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded-md">Reply</button>
+                </form>
+                <% } %>
+            </div>
+            <% }); %>
+        </div>
+    </main>
+
+    <footer class="bg-white shadow-md py-8 w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <p class="text-gray-500">© 2024 DressUp. All rights reserved.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-500 hover:text-blue-500">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-blue-500">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Dropdown Menu
+        const dropdownButton = document.getElementById('dropdown-button');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        dropdownButton.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
